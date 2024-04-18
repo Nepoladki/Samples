@@ -1,0 +1,46 @@
+namespace SamplesAPI.Models.Base
+{
+    public abstract class BaseModel
+    {
+        public Guid Id { get; set; }
+    }
+}
+
+using SamplesAPI.Models.Base;
+
+namespace SamplesAPI.Models
+{
+    public class Code : BaseModel
+    {
+        public string CodeIndex {  get; set; }
+        public string CodeName { get; set; }
+        public string LegacyCodeName { get; set; }
+        public string StockLevel { get; set; }
+        public string Note { get; set; }
+        public ICollection<CodeVault> CodeVaults { get; set; }
+    }
+}
+
+using SamplesAPI.Models.Base;
+
+namespace SamplesAPI.Models
+{
+    public class CodeVault : BaseModel
+    {
+        public Guid CodeId { get; set; }
+        public Guid VaultId { get; set; }
+        public Vault Vault { get; set; }
+        public Code Code { get; set; }
+    }
+}
+
+namespace SamplesAPI.Models.Base
+{
+    public class Vault : BaseModel
+    {
+        public string VaultName { get; set; }
+        public string Note {  get; set; }
+        public ICollection<CodeVault> CodeVaults { get; set; }
+    }
+}
+
