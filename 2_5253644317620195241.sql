@@ -219,7 +219,7 @@ SELECT c.id,
     v.VaultName
     FROM Codes AS c 
 LEFT JOIN CodeVaults AS cv ON c.id = cv.CodeId 
-LEFT JOIN Vaults AS v ON v.Id = cv.VaultId 
+JOIN Vaults AS v ON v.Id = cv.VaultId
 GROUP BY c.id,
     c.CodeIndex,
     c.CodeName,
@@ -227,5 +227,5 @@ GROUP BY c.id,
     c.StockLevel,
 	v.VaultName,
 	v.Id,
-    c.note 
+    c.note
 ORDER BY c.CodeIndex 
