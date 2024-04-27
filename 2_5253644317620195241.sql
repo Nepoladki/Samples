@@ -219,7 +219,7 @@ SELECT c.id,
     v.VaultName
     FROM Codes AS c 
 LEFT JOIN CodeVaults AS cv ON c.id = cv.CodeId 
-JOIN Vaults AS v ON v.Id = cv.VaultId
+LEFT JOIN Vaults AS v ON v.Id = cv.VaultId 
 GROUP BY c.id,
     c.CodeIndex,
     c.CodeName,
@@ -227,5 +227,12 @@ GROUP BY c.id,
     c.StockLevel,
 	v.VaultName,
 	v.Id,
-    c.note
+    c.note 
 ORDER BY c.CodeIndex 
+
+SELECT c.Id, c.CodeIndex, c.CodeName, c.LegacyCodeName, c.StockLevel, c.Note, v.Id, v.VaultName 
+FROM Codes c
+LEFT JOIN CodeVaults cv ON cv.CodeId = c.Id
+LEFT JOIN Vaults v ON v.Id = cv.VaultId
+FOR JSON AUTO
+
