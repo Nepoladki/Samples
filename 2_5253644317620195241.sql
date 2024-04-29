@@ -236,3 +236,30 @@ LEFT JOIN CodeVaults cv ON cv.CodeId = c.Id
 LEFT JOIN Vaults v ON v.Id = cv.VaultId
 FOR JSON AUTO
 
+	SELECT
+	c.Id,
+	c.CodeIndex,
+	c.CodeName,
+	c.LegacyCodeName,
+	c.StockLevel,
+	json_agg(json_build_object(
+	    'vault_id', v.Id,
+	    'vault_name', v.VaultName
+	)) AS in_vaults,
+	c.Note
+    FROM
+	Codes c
+    LEFT JOIN
+	CodesVaults cv ON c.Id = cv.CodeId
+    LEFT JOIN
+	Vaults v ON cv.VaultId = v.Id
+    GROUP BY
+	c.Id,
+	c.CodeIndex,
+	c.CodeName,
+	c.LegacyCodeName,
+	c.StockLevel,
+	c.Note
+    ORDER BY
+	c.CodeIndex ASC
+
