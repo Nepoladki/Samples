@@ -263,3 +263,68 @@ FOR JSON AUTO
     ORDER BY
 	c.CodeIndex ASC
 
+[
+    "path": "/Username",
+    "op": "replace",
+    "value": "ReplacedOne"
+  }
+]
+
+# User Endpoints
+
+# # ------
+# GET (Get All Users)
+# Endpoint: http://localhost:3500/users
+# Returns: An array of user objects
+# Example Response:
+# json
+# [
+#   {
+#     "id": "fc52de0a-770d-40b1-aef1-aa4a4cb80c7d",
+#     "username": "Ilya",
+#     "roles": ["user", "admin"],
+#     "is_active": true
+#   }
+# ]
+
+# # ------
+# GET (Get User By Id)
+# Endpoint: http://localhost:3500/users/:id
+# Returns: A user object that matches the provided ID
+# Example Response:
+# json
+# {
+#   "id": "fc52de0a-770d-40b1-aef1-aa4a4cb80c7d",
+#   "username": "Ilya",
+#   "roles": ["user", "admin"],
+#   "is_active": true
+# }
+
+# # ------
+# POST (Add New User To Database)
+# Endpoint: http://localhost:3500/users
+# Request Body:
+# id (optional, sets by default)
+# username (required, unique)
+# password (required, at least 6 symbols long)
+# roles (optional, array, default: ["user"])
+# is_active (optional, boolean, default: true)
+# Returns: The created user object
+
+# # ------
+# PATCH (Update an Existing User)
+# Endpoint: http://localhost:3500/users/:id
+# Request Body:
+# id (required)
+# username (optional)
+# password (optional)
+# roles (optional, array)
+# is_active (optional, boolean)
+# Returns: The updated user object
+
+# # ------
+# DELETE (Delete User From Database)
+# Endpoint: http://localhost:3500/users/:id
+# Request Body:
+# id (required)
+# Returns: A success message or an error message if the user is not found
