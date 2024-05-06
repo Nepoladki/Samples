@@ -264,6 +264,7 @@ FOR JSON AUTO
 	c.CodeIndex ASC
 
 [
+  {
     "path": "/Username",
     "op": "replace",
     "value": "ReplacedOne"
