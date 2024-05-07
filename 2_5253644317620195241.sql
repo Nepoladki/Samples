@@ -329,3 +329,29 @@ FOR JSON AUTO
 # Request Body:
 # id (required)
 # Returns: A success message or an error message if the user is not found
+
+
+st model
+public ICollection<Codes> Code { get; set; }
+
+
+codes model
+public SampleTypes SampleType { get; set; }
+
+omc
+modelBuilder.Entity<SampleTypes>()
+    .HasMany(t => t.Code)
+    .WithOne(c => c.SampleType)
+    .HasForeignKey(c => c.TypeId);
+
+{
+  "id": "fj5dac1d-te8r-3e71-8f15-a4g2a836a779",
+  "codeIndex": "1.1.9.02",
+  "codeName": "validCodeName",
+  "legacyCodeName": "",
+  "stockLevel": null,
+  "note": null,
+  "typeId": 0,
+  "layers": 0,
+  "thickness": 0
+}
